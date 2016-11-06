@@ -9,19 +9,29 @@ Module Program
 
     Sub Main(args As String())
         Console.WriteLine("----------------------------------------")
-        Console.WriteLine("- StreamPassport (version 1.0) SHA-256 -")
+        Console.WriteLine("- StreamPassport (version 1.1) SHA-256 -")
         Console.WriteLine("----------------------------------------")
+
+        Dim argsf = args.Where(Function(item) item.ToLower().Trim() <> "-r").ToArray()
+        Dim recursive = args.Count <> argsf.Count
+        If argsf.Count = 0 Then
+            Console.WriteLine()
+            Console.WriteLine("Use -r to enable recursive directory processing")
+            Console.WriteLine()
+        End If
+
         Dim files As String()
-        If args.Count <> 0 Then
-            files = args
+        If argsf.Count <> 0 Then
+            files = argsf
         Else
             Dim exeName = Path.GetFileName(Application.ExecutablePath)
-            files = Directory.EnumerateFiles(Path.GetDirectoryName(Application.ExecutablePath)).Where(Function(item)
-                                                                                                          Return Not item.EndsWith(_ext) AndAlso
-                                                                                                                 Not item.EndsWith(_corruptedExt) AndAlso
-                                                                                                                 Not item.EndsWith(_okExt) AndAlso
-                                                                                                                 Not item.EndsWith(exeName)
-                                                                                                      End Function).ToArray()
+            files = Directory.EnumerateFiles(Path.GetDirectoryName(Application.ExecutablePath), "*.*",
+                                             If(recursive, SearchOption.AllDirectories, SearchOption.TopDirectoryOnly)).Where(Function(item)
+                                                                                                                                  Return Not item.EndsWith(_ext) AndAlso
+                                                                                                                                         Not item.EndsWith(_corruptedExt) AndAlso
+                                                                                                                                         Not item.EndsWith(_okExt) AndAlso
+                                                                                                                                         Not item.EndsWith(exeName)
+                                                                                                                              End Function).ToArray()
         End If
         Dim processed As Integer = 0
         For Each fileName In files
