@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("StreamPassport")>
+<Assembly: AssemblyTitle("StreamPassportGUI")>
 <Assembly: AssemblyDescription("Stream Checksum Integrity Verifier / SHA-256")>
 <Assembly: AssemblyCompany("Artem Drobanov (DrAF)")>
 <Assembly: AssemblyProduct("StreamPassport")>
@@ -18,7 +18,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("d19a2488-78a6-46f3-85b8-06a7926e107d")>
+<Assembly: Guid("0d4b174d-e2fa-4844-abec-9a21774f1b3b")>
 
 ' Version information for an assembly consists of the following four values:
 '

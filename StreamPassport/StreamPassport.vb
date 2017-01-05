@@ -57,12 +57,9 @@ Public Class StreamPassport
     End Function
 
     Public Overrides Function ToString() As String
-        Dim sb As New StringBuilder()
-        sb.Append(String.Format("ID:         {0}", Me.ID) + vbCrLf)
-        sb.Append(String.Format("SHA-256:    {0}", Me.SHA256) + vbCrLf)
-        sb.Append(String.Format("StreamSize: {0}", Me.StreamSize) + vbCrLf)
-        sb.Append(String.Format("Total:      {0}", Me.Total) + vbCrLf)
-        Return sb.ToString()
+        Dim streamSizeLong = Long.Parse(Me.StreamSize)
+        Return String.Format("| ID: {0,-64} | Size: {1, 26} | SHA-256: {2,-64} |", Me.ID.Substring(0, Math.Min(Me.ID.Length, 64)),
+                             streamSizeLong.ToString("#,##0"), Me.SHA256)
     End Function
 
     Private Function CalcTotal() As String

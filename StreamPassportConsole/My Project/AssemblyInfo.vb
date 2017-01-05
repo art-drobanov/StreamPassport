@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("FilePassportConsole")>
+<Assembly: AssemblyTitle("StreamPassportConsole")>
 <Assembly: AssemblyDescription("Stream Checksum Integrity Verifier / SHA-256")>
 <Assembly: AssemblyCompany("Artem Drobanov (DrAF)")>
 <Assembly: AssemblyProduct("StreamPassport")>
-<Assembly: AssemblyCopyright("Copyright © DrAF 2016")>
+<Assembly: AssemblyCopyright("Copyright © DrAF 2016 - 2017")>
 <Assembly: AssemblyTrademark("StreamPassport")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.1.16311.3")>
-<Assembly: AssemblyFileVersion("1.1.16311.3")>
+<Assembly: AssemblyVersion("1.1.17005.5")>
+<Assembly: AssemblyFileVersion("1.1.17005.5")>
