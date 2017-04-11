@@ -150,7 +150,13 @@ Public Class MainForm
                   End Sub)
     End Sub
 
-    Sub SafeDelete(fileName As String)
+    Private Sub _openDataFolderButton_Click(sender As Object, e As EventArgs) Handles _openDataFolderButton.Click
+        If MessageBox.Show("Open stream passport's folder?", "..\DATA", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
+            System.Diagnostics.Process.Start("explorer", _sprtsPath)
+        End If
+    End Sub
+
+    Private Sub SafeDelete(fileName As String)
         If File.Exists(fileName) Then
             File.SetAttributes(fileName, FileAttributes.Normal)
             File.Delete(fileName)

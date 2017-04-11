@@ -4,7 +4,9 @@ Imports System.Security.Cryptography
 
 <DataContract>
 Public Class StreamPassport
-    Private _totalHF As New SHA256Managed
+    Private _sha256Cng As New SHA256Cng()
+    Private _sha256Man As New SHA256Managed()
+    Private _sha256Csp As New SHA256CryptoServiceProvider()
 
     <DataMember>
     Public Property ID As String
@@ -73,8 +75,14 @@ Public Class StreamPassport
         For Each b In Encoding.ASCII.GetBytes(Me.StreamSize)
             hashBytes.Add(b)
         Next
-        Dim total = BytesToHex(_totalHF.ComputeHash(hashBytes.ToArray()))
-        Return total
+        Dim totalCng = BytesToHex(_sha256Cng.ComputeHash(hashBytes.ToArray()))
+        Dim totalMan = BytesToHex(_sha256Man.ComputeHash(hashBytes.ToArray()))
+        Dim totalCsp = BytesToHex(_sha256Csp.ComputeHash(hashBytes.ToArray()))
+        If totalCng <> totalMan OrElse totalCng <> totalCsp Then
+            Throw New Exception("StreamPassport: SHA-256 provider error!")
+        Else
+            Return totalCng
+        End If
     End Function
 
     Private Function BytesToHex(data As Byte()) As String
