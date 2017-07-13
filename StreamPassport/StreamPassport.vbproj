@@ -80,7 +80,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Serializer.vb" />
+    <Compile Include="StreamPassport2.vb" />
     <Compile Include="StreamPassport.vb" />
+    <Compile Include="StreamPassport2Manager.vb" />
     <Compile Include="StreamPassportManager.vb" />
   </ItemGroup>
   <ItemGroup>
