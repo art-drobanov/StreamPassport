@@ -12,7 +12,7 @@ Public Module StreamPassport2Manager
     End Function
 
     Public Function Load(stream As Stream) As StreamPassport2
-        Using sr = New StreamReader(stream)
+        Using sr = New StreamReader(stream, Text.Encoding.UTF8, False, 4096, True)
             Dim objJson = sr.ReadToEnd()
             Dim obj = New StreamPassport2()
             obj.Deserialize(objJson)

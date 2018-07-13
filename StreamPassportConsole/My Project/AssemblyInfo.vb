@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Stream Checksum Integrity Verifier (SHA-256 & SHA-512)")>
 <Assembly: AssemblyCompany("Artem Drobanov (DrAF)")>
 <Assembly: AssemblyProduct("StreamPassport")>
-<Assembly: AssemblyCopyright("Copyright © DrAF 2016 - 2017")>
+<Assembly: AssemblyCopyright("Copyright © DrAF 2016 - 2018")>
 <Assembly: AssemblyTrademark("StreamPassport")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.0.17194.9")>
-<Assembly: AssemblyFileVersion("2.0.17194.9")>
+<Assembly: AssemblyVersion("2.1.18194.11")>
+<Assembly: AssemblyFileVersion("2.1.18194.11")>

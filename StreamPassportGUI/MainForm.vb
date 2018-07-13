@@ -81,14 +81,14 @@ Public Class MainForm
                     If File.Exists(sp2Path) Then
                         Using sprtFs = File.OpenRead(sp2Path)
                             Dim sp2 = StreamPassportManager.Load(sprtFs)
-                            If sp.Compare(sp2) Then
+                            If sp.Compare(sp2, _noTotalHashCheckBox.Checked) Then
                                 okCounter += 1
                                 MessageBox.Show(String.Format("File '{0}' was successfully verified by stream passport from '{1}'", sp.ID, Path.GetFileName(sp2Path)), "Stream Passport Check", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             End If
                         End Using
                     End If
                     For Each sprt In _sprts
-                        If sp.Compare(sprt) Then
+                        If sp.Compare(sprt, _noTotalHashCheckBox.Checked) Then
                             MessageBox.Show(String.Format("File '{0}' was successfully verified by stream passport from list ('..\data')", sp.ID), "Stream Passport Check", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             okCounter += 1
                         End If
@@ -112,13 +112,19 @@ Public Class MainForm
         If ofd.ShowDialog() = DialogResult.OK Then
             If File.Exists(ofd.FileName) Then
                 Using fs = File.OpenRead(ofd.FileName)
-                    Dim sp = StreamPassportManager.Create(Path.GetFileName(ofd.FileName), fs)
+                    Dim sprt = StreamPassportManager.Create(Path.GetFileName(ofd.FileName), fs)
                     Dim spPath = Path.GetDirectoryName(ofd.FileName)
                     Dim sprtPath = Path.Combine(spPath, ofd.FileName + ".sprt")
                     SafeDelete(sprtPath)
-                    File.WriteAllText(sprtPath, sp.Serialize())
+                    File.WriteAllText(sprtPath, sprt.Serialize())
+                    If _textFileOutputCheckBox.Checked Then
+                        If File.Exists(sprtPath + ".txt") Then
+                            SafeDelete(sprtPath + ".txt")
+                        End If
+                        File.WriteAllText(sprtPath + ".txt", sprt.ToText())
+                    End If
                     MessageBox.Show(String.Format("Stream Passport: '{0}'", Path.GetFileName(sprtPath)), "Create Stream Passport", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If _addToListAfterCreatingCheckBox.Checked Then
+                    If _addToListAfterCreationCheckBox.Checked Then
                         Dim sprtTargetPath = Path.Combine(_sprtsPath, Path.GetFileName(sprtPath))
                         SafeDelete(sprtTargetPath)
                         File.Copy(sprtPath, sprtTargetPath)

@@ -31,10 +31,12 @@ Partial Class MainForm
         Me._checkFileButton = New System.Windows.Forms.Button()
         Me._selectAllButton = New System.Windows.Forms.Button()
         Me._createStreamPassportButton = New System.Windows.Forms.Button()
-        Me._addToListAfterCreatingCheckBox = New System.Windows.Forms.CheckBox()
+        Me._addToListAfterCreationCheckBox = New System.Windows.Forms.CheckBox()
         Me._refreshListButton = New System.Windows.Forms.Button()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me._noTotalHashCheckBox = New System.Windows.Forms.CheckBox()
+        Me._textFileOutputCheckBox = New System.Windows.Forms.CheckBox()
         Me._sprtsGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -55,11 +57,11 @@ Partial Class MainForm
         '_openDataFolderButton
         '
         Me._openDataFolderButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me._openDataFolderButton.Location = New System.Drawing.Point(962, 0)
+        Me._openDataFolderButton.Location = New System.Drawing.Point(881, 0)
         Me._openDataFolderButton.Name = "_openDataFolderButton"
-        Me._openDataFolderButton.Size = New System.Drawing.Size(63, 19)
+        Me._openDataFolderButton.Size = New System.Drawing.Size(144, 19)
         Me._openDataFolderButton.TabIndex = 2
-        Me._openDataFolderButton.Text = "OPEN"
+        Me._openDataFolderButton.Text = "OPEN DATA FOLDER"
         Me._openDataFolderButton.UseVisualStyleBackColor = True
         '
         '_orderBySizeCheckBox
@@ -93,7 +95,7 @@ Partial Class MainForm
         Me._copyToClipboardButton.Location = New System.Drawing.Point(771, 504)
         Me._copyToClipboardButton.Name = "_copyToClipboardButton"
         Me._copyToClipboardButton.Size = New System.Drawing.Size(189, 48)
-        Me._copyToClipboardButton.TabIndex = 9
+        Me._copyToClipboardButton.TabIndex = 11
         Me._copyToClipboardButton.Text = "Copy Passport(s) To Clipboard"
         Me._copyToClipboardButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me._copyToClipboardButton.UseVisualStyleBackColor = True
@@ -104,7 +106,7 @@ Partial Class MainForm
         Me._checkFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me._checkFileButton.Location = New System.Drawing.Point(12, 504)
         Me._checkFileButton.Name = "_checkFileButton"
-        Me._checkFileButton.Size = New System.Drawing.Size(156, 48)
+        Me._checkFileButton.Size = New System.Drawing.Size(144, 48)
         Me._checkFileButton.TabIndex = 4
         Me._checkFileButton.Text = "Check File"
         Me._checkFileButton.UseVisualStyleBackColor = True
@@ -113,11 +115,11 @@ Partial Class MainForm
         '
         Me._selectAllButton.Image = CType(resources.GetObject("_selectAllButton.Image"), System.Drawing.Image)
         Me._selectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me._selectAllButton.Location = New System.Drawing.Point(612, 504)
+        Me._selectAllButton.Location = New System.Drawing.Point(604, 504)
         Me._selectAllButton.Name = "_selectAllButton"
-        Me._selectAllButton.Size = New System.Drawing.Size(153, 48)
-        Me._selectAllButton.TabIndex = 8
-        Me._selectAllButton.Text = "No Selection (Get All)"
+        Me._selectAllButton.Size = New System.Drawing.Size(161, 48)
+        Me._selectAllButton.TabIndex = 10
+        Me._selectAllButton.Text = "No Selection (Get ALL)"
         Me._selectAllButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me._selectAllButton.UseVisualStyleBackColor = True
         '
@@ -125,32 +127,32 @@ Partial Class MainForm
         '
         Me._createStreamPassportButton.Image = CType(resources.GetObject("_createStreamPassportButton.Image"), System.Drawing.Image)
         Me._createStreamPassportButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me._createStreamPassportButton.Location = New System.Drawing.Point(174, 504)
+        Me._createStreamPassportButton.Location = New System.Drawing.Point(162, 504)
         Me._createStreamPassportButton.Name = "_createStreamPassportButton"
-        Me._createStreamPassportButton.Size = New System.Drawing.Size(168, 48)
+        Me._createStreamPassportButton.Size = New System.Drawing.Size(164, 48)
         Me._createStreamPassportButton.TabIndex = 5
         Me._createStreamPassportButton.Text = "Create Stream Passport"
         Me._createStreamPassportButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me._createStreamPassportButton.UseVisualStyleBackColor = True
         '
-        '_addToListAfterCreatingCheckBox
+        '_addToListAfterCreationCheckBox
         '
-        Me._addToListAfterCreatingCheckBox.AutoSize = True
-        Me._addToListAfterCreatingCheckBox.Location = New System.Drawing.Point(348, 521)
-        Me._addToListAfterCreatingCheckBox.Name = "_addToListAfterCreatingCheckBox"
-        Me._addToListAfterCreatingCheckBox.Size = New System.Drawing.Size(137, 17)
-        Me._addToListAfterCreatingCheckBox.TabIndex = 6
-        Me._addToListAfterCreatingCheckBox.Text = "Add to list after creating"
-        Me._addToListAfterCreatingCheckBox.UseVisualStyleBackColor = True
+        Me._addToListAfterCreationCheckBox.AutoSize = True
+        Me._addToListAfterCreationCheckBox.Location = New System.Drawing.Point(332, 537)
+        Me._addToListAfterCreationCheckBox.Name = "_addToListAfterCreationCheckBox"
+        Me._addToListAfterCreationCheckBox.Size = New System.Drawing.Size(137, 17)
+        Me._addToListAfterCreationCheckBox.TabIndex = 8
+        Me._addToListAfterCreationCheckBox.Text = "Add to list after creation"
+        Me._addToListAfterCreationCheckBox.UseVisualStyleBackColor = True
         '
         '_refreshListButton
         '
         Me._refreshListButton.Image = CType(resources.GetObject("_refreshListButton.Image"), System.Drawing.Image)
         Me._refreshListButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me._refreshListButton.Location = New System.Drawing.Point(491, 504)
+        Me._refreshListButton.Location = New System.Drawing.Point(492, 504)
         Me._refreshListButton.Name = "_refreshListButton"
-        Me._refreshListButton.Size = New System.Drawing.Size(115, 48)
-        Me._refreshListButton.TabIndex = 7
+        Me._refreshListButton.Size = New System.Drawing.Size(106, 48)
+        Me._refreshListButton.TabIndex = 9
         Me._refreshListButton.Text = "Refresh List"
         Me._refreshListButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me._refreshListButton.UseVisualStyleBackColor = True
@@ -175,14 +177,38 @@ Partial Class MainForm
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "http://graphicrating.com"
         '
+        '_noTotalHashCheckBox
+        '
+        Me._noTotalHashCheckBox.AutoSize = True
+        Me._noTotalHashCheckBox.Location = New System.Drawing.Point(332, 504)
+        Me._noTotalHashCheckBox.Name = "_noTotalHashCheckBox"
+        Me._noTotalHashCheckBox.Size = New System.Drawing.Size(122, 17)
+        Me._noTotalHashCheckBox.TabIndex = 6
+        Me._noTotalHashCheckBox.Text = "No total hash check"
+        Me._noTotalHashCheckBox.UseVisualStyleBackColor = True
+        '
+        '_textFileOutputCheckBox
+        '
+        Me._textFileOutputCheckBox.AutoSize = True
+        Me._textFileOutputCheckBox.Checked = True
+        Me._textFileOutputCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me._textFileOutputCheckBox.Location = New System.Drawing.Point(332, 520)
+        Me._textFileOutputCheckBox.Name = "_textFileOutputCheckBox"
+        Me._textFileOutputCheckBox.Size = New System.Drawing.Size(144, 17)
+        Me._textFileOutputCheckBox.TabIndex = 7
+        Me._textFileOutputCheckBox.Text = "Add output to the text file"
+        Me._textFileOutputCheckBox.UseVisualStyleBackColor = True
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1157, 561)
+        Me.Controls.Add(Me._textFileOutputCheckBox)
+        Me.Controls.Add(Me._noTotalHashCheckBox)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me._refreshListButton)
-        Me.Controls.Add(Me._addToListAfterCreatingCheckBox)
+        Me.Controls.Add(Me._addToListAfterCreationCheckBox)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me._createStreamPassportButton)
         Me.Controls.Add(Me._selectAllButton)
@@ -209,9 +235,11 @@ Partial Class MainForm
     Friend WithEvents _checkFileButton As Button
     Friend WithEvents _selectAllButton As Button
     Friend WithEvents _createStreamPassportButton As Button
-    Friend WithEvents _addToListAfterCreatingCheckBox As CheckBox
+    Friend WithEvents _addToListAfterCreationCheckBox As CheckBox
     Friend WithEvents _refreshListButton As Button
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents _openDataFolderButton As Button
+    Friend WithEvents _noTotalHashCheckBox As CheckBox
+    Friend WithEvents _textFileOutputCheckBox As CheckBox
 End Class

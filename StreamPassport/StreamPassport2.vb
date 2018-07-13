@@ -46,8 +46,8 @@ Public Class StreamPassport2
         Return Me.Total = CalcTotal()
     End Function
 
-    Public Function Compare(sprt As StreamPassport2) As Boolean
-        If Me.IsValid() AndAlso sprt.IsValid Then
+    Public Function Compare(sprt As StreamPassport2, noTotalHash As Boolean) As Boolean
+        If noTotalHash OrElse (Me.IsValid() AndAlso sprt.IsValid()) Then
             If Me.SHA512 = sprt.SHA512 AndAlso Me.StreamSize = sprt.StreamSize Then
                 Return True
             Else
@@ -64,15 +64,65 @@ Public Class StreamPassport2
                              streamSizeLong.ToString("#,##0"), Me.SHA512)
     End Function
 
+    Public Function ToText() As String
+        Dim sb = New StringBuilder()
+
+        'Header
+        sb.AppendLine("==============")
+        sb.AppendLine("StreamPassport")
+        sb.AppendLine("==============")
+
+        'ID
+        sb.AppendLine(String.Format("ID: {0};", Me.ID))
+
+        'Size
+        Dim sizeStack = New Stack()
+        For Each d In Me.StreamSize
+            sizeStack.Push(d)
+        Next
+        Dim sizeString = New StringBuilder()
+        Dim sizeCounter = 1
+        For Each d In sizeStack
+            sizeString.Append(d)
+            If sizeCounter = 3 Then
+                sizeCounter = 1
+                sizeString.Append(" ")
+            End If
+            sizeCounter += 1
+        Next
+        sb.AppendLine(String.Format("Size: {0};", New String(sizeString.ToString().Reverse().ToArray())))
+
+        'SHA-256
+        sb.AppendLine("SHA-512:")
+        sb.AppendLine("=============")
+        sb.Append("01: ") : Dim row = 1
+        For i = 1 To Me.SHA512.Length
+            sb.Append(Me.SHA512(i - 1))
+            If i Mod 4 = 0 AndAlso i Mod 8 <> 0 Then
+                sb.Append("-")
+            End If
+            If i Mod 8 = 0 AndAlso i < Me.SHA512.Length Then
+                row += 1
+                sb.Append(vbCrLf)
+                sb.Append(String.Format("{0, 2}: ", row.ToString("00")))
+            End If
+        Next
+        sb.Append(vbCrLf)
+        sb.AppendLine("=============")
+
+        Return sb.ToString()
+    End Function
+
     Private Function CalcTotal() As String
+        Dim encoding = Text.Encoding.ASCII
         Dim hashBytes As New List(Of Byte)
-        For Each b In Encoding.ASCII.GetBytes(Me.ID)
+        For Each b In encoding.GetBytes(Me.ID) 'TODO: homoglyph removing from ID (filename)
             hashBytes.Add(b)
         Next
-        For Each b In Encoding.ASCII.GetBytes(Me.SHA512)
+        For Each b In encoding.GetBytes(Me.SHA512)
             hashBytes.Add(b)
         Next
-        For Each b In Encoding.ASCII.GetBytes(Me.StreamSize)
+        For Each b In encoding.GetBytes(Me.StreamSize)
             hashBytes.Add(b)
         Next
         Dim totalCng = BytesToHex(_sha512Cng.ComputeHash(hashBytes.ToArray()))
