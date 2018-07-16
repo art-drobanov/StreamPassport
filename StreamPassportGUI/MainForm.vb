@@ -3,7 +3,7 @@ Imports System.Text
 Imports StreamPassport
 
 Public Class MainForm
-    Private _sprts As StreamPassport.StreamPassport()
+    Private _sprts As StreamPassport.StreamPassport1()
     Private _sprtsPath As String
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -12,8 +12,8 @@ Public Class MainForm
         RefreshSprtsListBox()
     End Sub
 
-    Private Function GetValidSprtsFromFolder(sprtsPath As String) As StreamPassport.StreamPassport()
-        Dim sprts As New List(Of StreamPassport.StreamPassport)
+    Private Function GetValidSprtsFromFolder(sprtsPath As String) As StreamPassport.StreamPassport1()
+        Dim sprts As New List(Of StreamPassport.StreamPassport1)
         If Not Directory.Exists(sprtsPath) Then
             Directory.CreateDirectory(sprtsPath)
         End If
@@ -21,7 +21,7 @@ Public Class MainForm
         For Each sprtPath In sprtsPaths
             If File.Exists(sprtPath) Then
                 Dim sprtText = File.ReadAllText(sprtPath)
-                Dim sprt As New StreamPassport.StreamPassport()
+                Dim sprt As New StreamPassport.StreamPassport1()
                 Try
                     sprt.Deserialize(sprtText)
                 Catch
@@ -42,7 +42,7 @@ Public Class MainForm
         Dim result As New StringBuilder
         If _sprtsListBox.SelectedIndices.Count() <> 0 Then
             For Each idx In _sprtsListBox.SelectedIndices
-                Dim sprt = CType(_sprtsListBox.Items(idx), StreamPassport.StreamPassport)
+                Dim sprt = CType(_sprtsListBox.Items(idx), StreamPassport.StreamPassport1)
                 Dim sprtString = sprt.Serialize()
                 result.Append(sprtString)
                 result.Append(vbCrLf)
@@ -75,12 +75,12 @@ Public Class MainForm
         If ofd.ShowDialog() = DialogResult.OK Then
             If File.Exists(ofd.FileName) Then
                 Using fs = File.OpenRead(ofd.FileName)
-                    Dim sp = StreamPassportManager.Create(Path.GetFileName(ofd.FileName), fs)
+                    Dim sp = StreamPassport1Manager.Create(Path.GetFileName(ofd.FileName), fs)
                     Dim sp2Path = ofd.FileName + ".sprt"
                     Dim okCounter As Integer = 0
                     If File.Exists(sp2Path) Then
                         Using sprtFs = File.OpenRead(sp2Path)
-                            Dim sp2 = StreamPassportManager.Load(sprtFs)
+                            Dim sp2 = StreamPassport1Manager.Load(sprtFs)
                             If sp.Compare(sp2, _noTotalHashCheckBox.Checked) Then
                                 okCounter += 1
                                 MessageBox.Show(String.Format("File '{0}' was successfully verified by stream passport from '{1}'", sp.ID, Path.GetFileName(sp2Path)), "Stream Passport Check", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -112,7 +112,7 @@ Public Class MainForm
         If ofd.ShowDialog() = DialogResult.OK Then
             If File.Exists(ofd.FileName) Then
                 Using fs = File.OpenRead(ofd.FileName)
-                    Dim sprt = StreamPassportManager.Create(Path.GetFileName(ofd.FileName), fs)
+                    Dim sprt = StreamPassport1Manager.Create(Path.GetFileName(ofd.FileName), fs)
                     Dim spPath = Path.GetDirectoryName(ofd.FileName)
                     Dim sprtPath = Path.Combine(spPath, ofd.FileName + ".sprt")
                     SafeDelete(sprtPath)

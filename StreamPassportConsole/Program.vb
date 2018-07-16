@@ -52,9 +52,9 @@ Module Program
                 Using fs = File.OpenRead(fileName)
 
                     'SPRT1
-                    Dim sp1Loaded As StreamPassport.StreamPassport = Nothing
+                    Dim sp1Loaded As StreamPassport.StreamPassport1 = Nothing
                     Try
-                        sp1Loaded = StreamPassportManager.Load(fs)
+                        sp1Loaded = StreamPassport1Manager.Load(fs)
                     Catch
                     End Try
                     If sp1Loaded IsNot Nothing Then
@@ -65,10 +65,10 @@ Module Program
                             File.WriteAllText(fileName + _ext + _txt, sp1Loaded.ToText())
                         End If
                     Else
-                        Dim sprt = StreamPassportManager.Create(Path.GetFileName(fileName), fs) 'sprt
+                        Dim sprt = StreamPassport1Manager.Create(Path.GetFileName(fileName), fs) 'sprt
                         If File.Exists(fileName + _ext) Then
                             Using sprtFs = File.OpenRead(fileName + _ext)
-                                Dim sp2 = StreamPassportManager.Load(sprtFs)
+                                Dim sp2 = StreamPassport1Manager.Load(sprtFs)
                                 If sprt.Compare(sp2, noTotalHash) Then
                                     SafeDelete(fileName + _ext + _corruptedExt)
                                     File.Create(fileName + _ext + _okExt)

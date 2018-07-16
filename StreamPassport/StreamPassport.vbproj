@@ -80,10 +80,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Serializer.vb" />
-    <Compile Include="StreamPassport2.vb" />
     <Compile Include="StreamPassport.vb" />
+    <Compile Include="StreamPassport2.vb" />
+    <Compile Include="StreamPassport1.vb" />
     <Compile Include="StreamPassport2Manager.vb" />
-    <Compile Include="StreamPassportManager.vb" />
+    <Compile Include="StreamPassport1Manager.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
