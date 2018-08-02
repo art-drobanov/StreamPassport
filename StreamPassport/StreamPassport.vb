@@ -71,7 +71,7 @@ Public MustInherit Class StreamPassport
         For Each d In sizeStack
             sizeString.Append(d)
             If sizeCounter = 3 Then
-                sizeCounter = 1
+                sizeCounter = 0
                 sizeString.Append(" ")
             End If
             sizeCounter += 1
