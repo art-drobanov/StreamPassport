@@ -30,10 +30,10 @@ Public Class StreamPassport1
         End Using
     End Function
 
-    Public ReadOnly Property Ext As String = ".sprt" Implements IStreamPassport.Ext
-    Public ReadOnly Property CorruptedMarker As String = ".corrupted" Implements IStreamPassport.CorruptedMarker
-    Public ReadOnly Property OKMarker As String = ".ok" Implements IStreamPassport.OKMarker
-    Public ReadOnly Property TextMarker As String = ".txt" Implements IStreamPassport.TextMarker
+    Public ReadOnly Property Ext As String = StreamPassportManager.Ext Implements IStreamPassport.Ext
+    Public ReadOnly Property CorruptedMarker As String = StreamPassportManager.CorruptedMarker Implements IStreamPassport.CorruptedMarker
+    Public ReadOnly Property OKMarker As String = StreamPassportManager.OKMarker Implements IStreamPassport.OKMarker
+    Public ReadOnly Property TextMarker As String = StreamPassportManager.TextMarker Implements IStreamPassport.TextMarker
 
     <DataMember>
     Public Property ID As String Implements IStreamPassport.ID

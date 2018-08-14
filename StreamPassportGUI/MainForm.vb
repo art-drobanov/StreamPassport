@@ -115,18 +115,18 @@ Public Class MainForm
                     Dim sprt = StreamPassport1.Create(Path.GetFileName(ofd.FileName), fs)
                     Dim spPath = Path.GetDirectoryName(ofd.FileName)
                     Dim sprtPath = Path.Combine(spPath, ofd.FileName + ".sprt")
-                    SafeDelete(sprtPath)
+                    StreamPassportManager.SafeDelete(sprtPath)
                     File.WriteAllText(sprtPath, sprt.Serialize())
                     If _textFileOutputCheckBox.Checked Then
                         If File.Exists(sprtPath + ".txt") Then
-                            SafeDelete(sprtPath + ".txt")
+                            StreamPassportManager.SafeDelete(sprtPath + ".txt")
                         End If
                         File.WriteAllText(sprtPath + ".txt", sprt.ToText())
                     End If
                     MessageBox.Show(String.Format("Stream Passport: '{0}'", Path.GetFileName(sprtPath)), "Create Stream Passport", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If _addToListAfterCreationCheckBox.Checked Then
                         Dim sprtTargetPath = Path.Combine(_sprtsPath, Path.GetFileName(sprtPath))
-                        SafeDelete(sprtTargetPath)
+                        StreamPassportManager.SafeDelete(sprtTargetPath)
                         File.Copy(sprtPath, sprtTargetPath)
                         RefreshSprtsListBox()
                     End If
@@ -159,13 +159,6 @@ Public Class MainForm
     Private Sub _openDataFolderButton_Click(sender As Object, e As EventArgs) Handles _openDataFolderButton.Click
         If MessageBox.Show("Open stream passport's folder?", "..\DATA", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
             System.Diagnostics.Process.Start("explorer", _sprtsPath)
-        End If
-    End Sub
-
-    Private Sub SafeDelete(fileName As String)
-        If File.Exists(fileName) Then
-            File.SetAttributes(fileName, FileAttributes.Normal)
-            File.Delete(fileName)
         End If
     End Sub
 End Class

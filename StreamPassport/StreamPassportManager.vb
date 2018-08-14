@@ -1,6 +1,12 @@
 ﻿Imports System.IO
 
 Public Module StreamPassportManager
+    Public Const Ext As String = ".sprt"
+    Public Const Ext2 As String = ".sprt2"
+    Public Const CorruptedMarker As String = ".corrupted"
+    Public Const OKMarker As String = ".ok"
+    Public Const TextMarker As String = ".txt"
+
     Public Sub FileProcessing(fileName As String, type As StreamPassportType, useTextOutput As Boolean, noTotalHash As Boolean)
         Dim ISP As IStreamPassport = If(type = StreamPassportType.SHA256, New StreamPassport1(), New StreamPassport2())
         Dim txtFileName = fileName + ISP.Ext + ISP.TextMarker
@@ -24,7 +30,7 @@ Public Module StreamPassportManager
                 Dim sprtFileName = fileName + ISP.Ext
                 If File.Exists(sprtFileName) Then
                     Using sprtFs = File.OpenRead(sprtFileName)
-                        sp = StreamPassport1.Load(sprtFs)
+                        sp = ISP.LoadPassport(sprtFs)
                         If sprt.Compare(sp, noTotalHash) Then
                             SafeDelete(corruptedFileName)
                             File.Create(okFileName)
@@ -46,7 +52,7 @@ Public Module StreamPassportManager
         End Using
     End Sub
 
-    Private Sub SafeDelete(fileName As String)
+    Public Sub SafeDelete(fileName As String)
         If File.Exists(fileName) Then
             File.SetAttributes(fileName, FileAttributes.Normal)
             File.Delete(fileName)

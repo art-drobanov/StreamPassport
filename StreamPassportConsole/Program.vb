@@ -3,11 +3,11 @@ Imports System.Windows.Forms
 Imports StreamPassport
 
 Module Program
-    Private Const _ext = ".sprt"
-    Private Const _ext2 = ".sprt2"
-    Private Const _corruptedExt = ".corrupted"
-    Private Const _okExt = ".ok"
-    Private Const _txt = ".txt"
+    Private Const _ext = StreamPassportManager.Ext
+    Private Const _ext2 = StreamPassportManager.Ext2
+    Private Const _corruptedExt = StreamPassportManager.CorruptedMarker
+    Private Const _okExt = StreamPassportManager.OKMarker
+    Private Const _txt = StreamPassportManager.TextMarker
 
     Sub Main(args As String())
         Console.WriteLine("------------------------------------------------------")
