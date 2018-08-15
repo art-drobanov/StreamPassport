@@ -32,9 +32,10 @@ Public Class StreamPassport2
     End Function
 
     Public ReadOnly Property Ext As String = StreamPassportManager.Ext2 Implements IStreamPassport.Ext
-    Public ReadOnly Property CorruptedMarker As String = StreamPassportManager.CorruptedMarker Implements IStreamPassport.CorruptedMarker
     Public ReadOnly Property OKMarker As String = StreamPassportManager.OKMarker Implements IStreamPassport.OKMarker
+    Public ReadOnly Property CorruptedMarker As String = StreamPassportManager.CorruptedMarker Implements IStreamPassport.CorruptedMarker
     Public ReadOnly Property TextMarker As String = StreamPassportManager.TextMarker Implements IStreamPassport.TextMarker
+    Public ReadOnly Property ProcessingMarker As String = StreamPassportManager.ProcessingMarker Implements IStreamPassport.ProcessingMarker
 
     <DataMember>
     Public Property ID As String Implements IStreamPassport.ID
@@ -81,8 +82,8 @@ Public Class StreamPassport2
         Return Me.Total = CalcTotal(Me.ID, Me.SHA512, Me.StreamSize)
     End Function
 
-    Public Function Compare(sprt As IStreamPassport, noTotalHash As Boolean) As Boolean Implements IStreamPassport.Compare
-        If noTotalHash OrElse (Me.IsValid() AndAlso sprt.IsValid()) Then
+    Public Function Compare(sprt As IStreamPassport, Optional noTotalHashCheck As Boolean = False) As Boolean Implements IStreamPassport.Compare
+        If noTotalHashCheck OrElse (sprt.IsValid() AndAlso Me.IsValid()) Then
             Return Me.SHA512 = sprt.HASH AndAlso Me.StreamSize = sprt.StreamSize
         Else
             Return False

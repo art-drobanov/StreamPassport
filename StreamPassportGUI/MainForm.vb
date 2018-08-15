@@ -123,7 +123,7 @@ Public Class MainForm
                         End If
                         File.WriteAllText(sprtPath + ".txt", sprt.ToText())
                     End If
-                    MessageBox.Show(String.Format("Stream Passport: '{0}'", Path.GetFileName(sprtPath)), "Create Stream Passport", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show(String.Format("Stream Passport: '{0}'", Path.GetFileName(sprtPath)), "Stream Passport Create", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If _addToListAfterCreationCheckBox.Checked Then
                         Dim sprtTargetPath = Path.Combine(_sprtsPath, Path.GetFileName(sprtPath))
                         StreamPassportManager.SafeDelete(sprtTargetPath)

@@ -34,7 +34,7 @@ Module Program
         If argsf.Count <> 0 Then
             files = argsf
         Else
-            Dim exeName = Path.GetFileName(Application.ExecutablePath)
+            Dim appExeName = Path.GetFileName(Application.ExecutablePath)
             files = Directory.EnumerateFiles(Path.GetDirectoryName(Application.ExecutablePath), "*.*",
                                              If(isRecursive, SearchOption.AllDirectories, SearchOption.TopDirectoryOnly)).Where(Function(item)
                                                                                                                                     Return Not item.EndsWith(_ext) AndAlso
@@ -43,7 +43,9 @@ Module Program
                                                                                                                                          Not item.EndsWith(_ext2 + _corruptedExt) AndAlso
                                                                                                                                          Not item.EndsWith(_ext + _okExt) AndAlso
                                                                                                                                          Not item.EndsWith(_ext2 + _okExt) AndAlso
-                                                                                                                                         Not item.EndsWith(exeName)
+                                                                                                                                         Not item.EndsWith(_ext + _txt) AndAlso
+                                                                                                                                         Not item.EndsWith(_ext2 + _txt) AndAlso
+                                                                                                                                         Not item.EndsWith(appExeName)
                                                                                                                                 End Function).ToArray()
         End If
         Dim processedOk As Integer = 0
@@ -52,15 +54,17 @@ Module Program
             If File.Exists(fileName) Then
                 Try
                     StreamPassportManager.FileProcessing(fileName, StreamPassportType.SHA256, useTextOutput, noTotalHash)
-                    If useSprt2 Then StreamPassportManager.FileProcessing(fileName, StreamPassportType.SHA512, useTextOutput, noTotalHash)
+                    If useSprt2 Then
+                        StreamPassportManager.FileProcessing(fileName, StreamPassportType.SHA512, useTextOutput, noTotalHash)
+                    End If
                     processedOk += 1
-                    Console.WriteLine(String.Format("Processed: {0} ({1} / {2}, Errors: {3})", fileName, processedOk, files.Length, processedWithErr))
+                    Console.WriteLine(String.Format("Processed: {0} ({1} / {2}, Errors total: {3})", fileName, processedOk, files.Length, processedWithErr))
                 Catch ex As Exception
                     processedWithErr += 1
-                    Console.WriteLine(String.Format("Error: {0} ({1} / {2}, Errors: {3})", fileName, processedOk, files.Length, processedWithErr))
+                    Console.WriteLine(String.Format("Error: {0} ({1} / {2}, Errors total: {3})", fileName, processedOk, files.Length, processedWithErr))
                 End Try
             Else
-                Console.WriteLine(String.Format("Not found: {0} ({1} / {2}, Errors: {3})", fileName, processedOk, files.Length, processedWithErr))
+                Console.WriteLine(String.Format("Not found: {0} ({1} / {2}, Errors total: {3})", fileName, processedOk, files.Length, processedWithErr))
             End If
         Next
     End Sub
