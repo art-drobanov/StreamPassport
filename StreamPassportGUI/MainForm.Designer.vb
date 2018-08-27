@@ -24,7 +24,7 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me._sprtsGroupBox = New System.Windows.Forms.GroupBox()
-        Me._openDataFolderButton = New System.Windows.Forms.Button()
+        Me._openStreamPassportsStorageFolderButton = New System.Windows.Forms.Button()
         Me._orderBySizeCheckBox = New System.Windows.Forms.CheckBox()
         Me._sprtsListBox = New System.Windows.Forms.ListBox()
         Me._copyToClipboardButton = New System.Windows.Forms.Button()
@@ -43,7 +43,7 @@ Partial Class MainForm
         '_sprtsGroupBox
         '
         Me._sprtsGroupBox.BackColor = System.Drawing.Color.YellowGreen
-        Me._sprtsGroupBox.Controls.Add(Me._openDataFolderButton)
+        Me._sprtsGroupBox.Controls.Add(Me._openStreamPassportsStorageFolderButton)
         Me._sprtsGroupBox.Controls.Add(Me._orderBySizeCheckBox)
         Me._sprtsGroupBox.Controls.Add(Me._sprtsListBox)
         Me._sprtsGroupBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
@@ -54,15 +54,15 @@ Partial Class MainForm
         Me._sprtsGroupBox.TabStop = False
         Me._sprtsGroupBox.Text = "Valid Stream Passports in '..\data'"
         '
-        '_openDataFolderButton
+        '_openStreamPassportsStorageFolderButton
         '
-        Me._openDataFolderButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me._openDataFolderButton.Location = New System.Drawing.Point(881, 0)
-        Me._openDataFolderButton.Name = "_openDataFolderButton"
-        Me._openDataFolderButton.Size = New System.Drawing.Size(144, 19)
-        Me._openDataFolderButton.TabIndex = 2
-        Me._openDataFolderButton.Text = "OPEN DATA FOLDER"
-        Me._openDataFolderButton.UseVisualStyleBackColor = True
+        Me._openStreamPassportsStorageFolderButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me._openStreamPassportsStorageFolderButton.Location = New System.Drawing.Point(759, 0)
+        Me._openStreamPassportsStorageFolderButton.Name = "_openStreamPassportsStorageFolderButton"
+        Me._openStreamPassportsStorageFolderButton.Size = New System.Drawing.Size(266, 19)
+        Me._openStreamPassportsStorageFolderButton.TabIndex = 2
+        Me._openStreamPassportsStorageFolderButton.Text = "OPEN STREAM PASSPORT'S STORAGE FOLDER"
+        Me._openStreamPassportsStorageFolderButton.UseVisualStyleBackColor = True
         '
         '_orderBySizeCheckBox
         '
@@ -239,7 +239,7 @@ Partial Class MainForm
     Friend WithEvents _refreshListButton As Button
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents LinkLabel2 As LinkLabel
-    Friend WithEvents _openDataFolderButton As Button
+    Friend WithEvents _openStreamPassportsStorageFolderButton As Button
     Friend WithEvents _noTotalHashCheckBox As CheckBox
     Friend WithEvents _textFileOutputCheckBox As CheckBox
 End Class

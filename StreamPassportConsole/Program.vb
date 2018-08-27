@@ -53,9 +53,9 @@ Module Program
         For Each fileName In files
             If File.Exists(fileName) Then
                 Try
-                    StreamPassportManager.FileProcessing(fileName, StreamPassportType.SHA256, useTextOutput, noTotalHash)
+                    StreamPassportManager.FileProcessingConsole(fileName, StreamPassportType.SHA256, useTextOutput, noTotalHash)
                     If useSprt2 Then
-                        StreamPassportManager.FileProcessing(fileName, StreamPassportType.SHA512, useTextOutput, noTotalHash)
+                        StreamPassportManager.FileProcessingConsole(fileName, StreamPassportType.SHA512, useTextOutput, noTotalHash)
                     End If
                     processedOk += 1
                     Console.WriteLine(String.Format("Processed: {0} ({1} / {2}, Errors total: {3})", fileName, processedOk, files.Length, processedWithErr))
