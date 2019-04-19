@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Stream Checksum Integrity Verifier / SHA-256")>
 <Assembly: AssemblyCompany("Artem Drobanov (DrAF)")>
 <Assembly: AssemblyProduct("StreamPassport")>
-<Assembly: AssemblyCopyright("Copyright © DrAF 2016 - 2018")>
+<Assembly: AssemblyCopyright("Copyright © DrAF 2016 - 2019")>
 <Assembly: AssemblyTrademark("StreamPassport")>
 
 <Assembly: ComVisible(False)>

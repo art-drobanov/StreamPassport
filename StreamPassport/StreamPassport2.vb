@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.Runtime.Serialization
 Imports System.Security.Cryptography
-Imports StreamPassport
 
 <DataContract>
 Public Class StreamPassport2
